@@ -1,0 +1,92 @@
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .title-bar {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+  }
+  
+  .title-bar h1 {
+    margin: 0;
+    font-family: 'Dekko';
+  }
+  
+  
+  .box {
+    width: 250px;
+    height: 250px;
+    font-family: 'Dekko';
+    margin: 10px;
+    transition: transform 0.3s ease;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    outline: auto;
+  }
+  
+  .box:hover {
+    transform: scale(1.05);
+  }
+  
+
+  
+.blur-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+
+  
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  .video-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  #background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(2px);
+    z-index: -1;
+  }
+  
+  .blur-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+  }

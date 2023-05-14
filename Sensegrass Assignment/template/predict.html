@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Predicting System</title>
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&family=Ubuntu:wght@400;500&display=swap" rel="stylesheet"> 
+
+  <!-- Icon Font Stylesheet -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+  <!-- Template Stylesheet -->
+  <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+</head>
+<body>
+
+        <!-- Topbar Start -->
+        <div class="container-fluid bg-light p-0">
+            <div class="row gx-0 d-none d-lg-flex">
+                <div class="col-lg-7 px-5 text-start">
+                    <div class="h-100 d-inline-flex align-items-center">
+                        <a  href="{{url_for('home')}}"><i class="fa fa-home" style="font-size: 40px; color: black;"></i></a>
+                    </div>
+                    &nbsp;
+                    <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                        <small><b style="color: blue;">Wine Variety Prediction Systems: Based on Customer Reviews and Product Attributes</b></small>
+                    </div>
+                </div>
+                <div class="col-lg-5 px-5 text-end">
+                    <div class="h-100 d-inline-flex align-items-center">
+                        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://www.linkedin.com/in/aravindh-m-722066261/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="h-100 d-inline-flex align-items-center">
+                        <a class="btn btn-sm-square bg-white text-primary me-1" href="https://www.linkedin.com/in/aravindh-m-722066261/" target="_blank"><i class="fab fa-github"></i></a>
+                    </div>
+                    <div class="h-100 d-inline-flex align-items-center py-3 me-4">
+                        <a class="btn btn-sm-square bg-white text-primary me-1" href="mailto: aravindh.ap2011@gmail.com" target="_blank"><i class="fa fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Topbar End -->
+
+        <!-- Predicting Start -->
+<div class="container-fluid bg-secondary booking my-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row gx-5">
+            <div class="col-lg-6 py-5">
+                <div class="py-5">
+                    <h1 class="text-white mb-4">Predictive System for Wine Variety Prediction based on Country, Price, Points, and Sentiment Type</h1>
+                    <p class="text-white mb-0">The predictive system leverages machine learning techniques to analyze the relationship between features and wine variety. By considering country, price, points, and sentiment type, the system provides predictions that can assist in understanding and categorizing different wine varieties based on customer feedback and other factors.</p>
+                    <p style="color: aquamarine;">Note: The wine of from country are Italy, Portugal, US, France, Germany, Argentina,
+                        Chile, Australia, South Africa, New Zealand, Israel,
+                        Spain, Romania, Greece, Mexico, Hungary, Slovenia,
+                        Luxembourg, England, Uruguay, Lebanon, Canada, Brazil,
+                        Morocco, Czech Republic, Bulgaria, Cyprus, Turkey,
+                        Moldova, Croatia, Peru, Georgia, Ukraine, Switzerland,
+                        Slovakia, Serbia, India, Macedonia, Armenia </p>
+                </div>
+    
+            </div>
+            <div class="col-lg-6">
+                <div class="bg-primary h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn" data-wow-delay="0.6s">
+                    <h1 class="text-white mb-4">Predicting the Wine</h1>
+                    <form action="{{ url_for('wine_predict')}}" method="post">
+                        <div class="row g-4">
+                            <div class="col-12 col-sm-12">
+                                <input type="text" name="country" class="form-control border-0" placeholder="Enter the country that the wine is from?" style="height: 55px;">
+                            </div>
+                            <div class="col-12 col-sm-12">
+                                <input type="number" name="rating" class="form-control border-0" placeholder="What rating score to be in want(0-100)?" style="height: 55px;">
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="number" name="price" class="form-control border-0" placeholder="Your Afforbale Price?" style="height: 55px;">
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <select class="form-select border-0" name="Sentiment" style="height: 55px;">
+                                    <option selected>Select Sentiment Type</option>
+                                    <option value="2">Positive</option>
+                                    <option value="0">Negative</option>
+                                    <option value="1">Neutral</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-12">
+                                <button class="btn btn-secondary w-100 py-3" type="submit">Predict Now</button>
+                            </div>
+                        </div>
+                    </form>
+                    <br><br><br>
+                    {% if prediction  %}
+                    <div class="col-12">
+                        <button class="btn btn-warning w-100 py-3" type="submit">{{prediction}}</button>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Predicting Start -->
+<div class="container-fluid bg-secondary booking my-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row gx-5">
+            
+            <div class="col-lg-6">
+                <div class="bg-primary h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn" data-wow-delay="0.6s">
+                    <h1 class="text-white mb-4">Predicting the Wine</h1>
+                    <form action="{{ url_for('review_wine_predict')}}" method="post">
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-12">
+                                <input type="text" class="form-control border-0" name="review" placeholder="Enter the Review" style="height: 55px;">
+                            </div>
+                        
+                            <div class="col-12">
+                                <button class="btn btn-secondary w-100 py-3" type="submit">Predict Now</button>
+                            </div>
+                        </div>
+                    </form>
+                    <br><br><br>
+                    {% if prediction_text  %}
+                    <div class="col-12">
+                        <button class="btn btn-warning w-100 py-3" type="submit">{{prediction_text}}</button>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="col-lg-6 py-5">
+                <div class="py-5">
+                    <h1 class="text-white mb-4">Predictive System for Wine Variety Prediction based on Reviews</h1>
+                    <p class="text-white mb-0">The predictive system leverages the information contained within customer reviews to automatically classify and predict the wine variety. By utilizing advanced machine learning techniques and natural language processing, the system enables accurate and efficient wine variety predictions based on the textual content of customer reviews.</p>
+                    <p style="color: aquamarine;">Note: It's take long time to predict</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Predicting End -->
+
+</div>
+
+      <!-- JavaScript Libraries -->
+      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="lib/wow/wow.min.js"></script>
+      <script src="lib/easing/easing.min.js"></script>
+      <script src="lib/waypoints/waypoints.min.js"></script>
+      <script src="lib/counterup/counterup.min.js"></script>
+      <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+      <script src="lib/tempusdominus/js/moment.min.js"></script>
+      <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+      <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+  
+      <!-- Template Javascript -->
+      <script src="{{url_for('static',filename='js/main.js')}}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
